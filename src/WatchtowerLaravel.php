@@ -24,4 +24,16 @@ class WatchtowerLaravel
             ->values()
             ->toArray();
     }
+
+    public function events(): array
+    {
+        // TODO: Add events
+        return [];
+    }
+
+    public function dependencies(): array
+    {
+        // TODO: Add dependencies
+        return [];
+    }
 }
