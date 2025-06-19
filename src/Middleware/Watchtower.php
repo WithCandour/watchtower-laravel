@@ -15,9 +15,15 @@ class Watchtower
         $secret = config('watchtower-laravel.secret');
         $headerSecret = $request->header('X-Watchtower-Secret');
 
-        if (!$request->isMethod('GET')) { return $next($request); }
-        if (! $secret) { return $next($request); }
-        if (! $headerSecret || $headerSecret !== $secret) { return $next($request); }
+        if (! $request->isMethod('GET')) {
+            return $next($request);
+        }
+        if (! $secret) {
+            return $next($request);
+        }
+        if (! $headerSecret || $headerSecret !== $secret) {
+            return $next($request);
+        }
 
         $response = $next($request);
 
