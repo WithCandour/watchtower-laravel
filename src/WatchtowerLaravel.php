@@ -11,6 +11,7 @@ class WatchtowerLaravel
     {
         return Collection::make([
             PHP\Version::class,
+            PHP\MemoryLimit::class,
         ])
             ->map(function (string $class) {
                 $instance = new $class;

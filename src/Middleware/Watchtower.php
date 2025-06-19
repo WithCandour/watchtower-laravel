@@ -4,6 +4,7 @@ namespace Watchtower\WatchtowerLaravel\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 use Watchtower\WatchtowerLaravel\Facades\WatchtowerLaravel;
@@ -12,42 +13,30 @@ class Watchtower
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $secret = config('watchtower-laravel.secret');
-        $headerSecret = $request->header('X-Watchtower-Secret');
+        if ($request->method() !== 'GET') return $next($request);
 
-        if (! $request->isMethod('GET')) {
-            return $next($request);
-        }
-        if (! $secret) {
-            return $next($request);
-        }
-        if (! $headerSecret || $headerSecret !== $secret) {
+        $url = Config::get('watchtower-laravel.server_url');
+        $id = $request->header('X-Watchtower-Poll-Id');
+        $secret = Config::get('watchtower-laravel.secret');
+
+        if (!$url || !$id || !$secret) return $next($request);
+
+        if ($secret !== $request->header('X-Watchtower-Secret')) {
             return $next($request);
         }
 
         $response = $next($request);
 
-        $measurements = WatchtowerLaravel::measurements();
-        $events = WatchtowerLaravel::events();
-        $dependencies = WatchtowerLaravel::dependencies();
-        $this->sendPayload($measurements, $events, $dependencies, $secret);
+        Http::asJson()
+            ->withHeaders([
+                'X-Watchtower-Secret' => $secret,
+                'X-Watchtower-Poll-Id' => $id,
+            ])->post($url, [
+                'measurements' => WatchtowerLaravel::measurements(),
+                'events' => WatchtowerLaravel::events(),
+                'dependencies' => WatchtowerLaravel::dependencies(),
+            ]);
 
         return $response;
-    }
-
-    protected function sendPayload(array $measurements, array $events, array $dependencies, string $project_id): void
-    {
-        $serverUrl = config('watchtower-laravel.server_url');
-
-        if (! $serverUrl) {
-            return;
-        }
-
-        Http::post($serverUrl.'/api/measurements', [
-            'measurements' => $measurements,
-            'events' => $events,
-            'dependencies' => $dependencies,
-            'project_id' => $project_id,
-        ]);
     }
 }
