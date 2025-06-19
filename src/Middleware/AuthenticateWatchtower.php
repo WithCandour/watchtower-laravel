@@ -4,8 +4,8 @@ namespace Watchtower\WatchtowerLaravel\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Response;
 use Watchtower\WatchtowerLaravel\Facades\WatchtowerLaravel;
 
 class AuthenticateWatchtower
@@ -15,13 +15,13 @@ class AuthenticateWatchtower
         $secret = config('watchtower-laravel.secret');
         $project_id = $request->header('X-Watchtower-Project-Id');
 
-        if (!$secret) {
+        if (! $secret) {
             return response()->json(['error' => 'Watchtower secret not configured'], 500);
         }
 
         $headerSecret = $request->header('X-Watchtower-Secret');
 
-        if (!$headerSecret || $headerSecret !== $secret) {
+        if (! $headerSecret || $headerSecret !== $secret) {
             return response()->json(['error' => 'Invalid Watchtower secret'], 401);
         }
 
@@ -39,11 +39,11 @@ class AuthenticateWatchtower
     {
         $serverUrl = config('watchtower-laravel.server_url');
 
-        if (!$serverUrl) {
+        if (! $serverUrl) {
             return;
         }
 
-        Http::post($serverUrl . '/api/measurements', [
+        Http::post($serverUrl.'/api/measurements', [
             'measurements' => $measurements,
             'project_id' => $project_id,
         ]);
