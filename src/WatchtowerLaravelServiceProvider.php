@@ -5,6 +5,7 @@ namespace Watchtower\WatchtowerLaravel;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Watchtower\WatchtowerLaravel\Commands\WatchtowerLaravelCommand;
+use Watchtower\WatchtowerLaravel\Middleware\AuthenticateWatchtower;
 
 class WatchtowerLaravelServiceProvider extends PackageServiceProvider
 {
@@ -19,5 +20,7 @@ class WatchtowerLaravelServiceProvider extends PackageServiceProvider
             ->name('watchtower-laravel')
             ->hasConfigFile()
             ->hasCommand(WatchtowerLaravelCommand::class);
+
+        $this->app['router']->aliasMiddleware('watchtower.auth', AuthenticateWatchtower::class);
     }
 }
