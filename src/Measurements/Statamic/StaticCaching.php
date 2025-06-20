@@ -15,7 +15,7 @@ class StaticCaching extends Measurement
     public function value(): ?string
     {
         if (!class_exists(\Statamic\Facades\StaticCache::class)) {
-            return 'not_installed';
+            return null;
         }
 
         return Config::get('statamic.static_caching.strategy', 'not_configured');

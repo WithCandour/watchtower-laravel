@@ -1,10 +1,10 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\PHP;
+namespace Watchtower\WatchtowerLaravel\Measurements\PHP\Opcache;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 
-class OpcacheEnabled extends Measurement
+class Enabled extends Measurement
 {
     public function key(): string
     {
@@ -13,7 +13,7 @@ class OpcacheEnabled extends Measurement
 
     public function value(): ?string
     {
-        return function_exists('opcache_get_status') && opcache_get_status() ? '1' : '0';
+        return function_exists('opcache_get_status') && opcache_get_status() ? 'true' : 'false';
     }
 
     public function type(): string

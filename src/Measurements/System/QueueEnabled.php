@@ -15,7 +15,7 @@ class QueueEnabled extends Measurement
     public function value(): ?string
     {
         $connection = Config::get('queue.default');
-        return $connection && $connection !== 'sync' ? '1' : '0';
+        return $connection && $connection !== 'sync' ? 'true' : 'false';
     }
 
     public function type(): string

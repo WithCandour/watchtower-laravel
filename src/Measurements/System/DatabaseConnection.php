@@ -16,14 +16,14 @@ class DatabaseConnection extends Measurement
     {
         try {
             DB::connection()->getPdo();
-            return 'connected';
+            return 'true';
         } catch (\Exception $e) {
-            return 'disconnected';
+            return 'false';
         }
     }
 
     public function type(): string
     {
-        return Measurement::TYPE_STRING;
+        return Measurement::TYPE_BOOLEAN;
     }
 }

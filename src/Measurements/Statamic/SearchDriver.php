@@ -15,10 +15,10 @@ class SearchDriver extends Measurement
     public function value(): ?string
     {
         if (!class_exists(\Statamic\Search\Index::class)) {
-            return 'not_installed';
+            return null;
         }
 
-        return Config::get('statamic.search.indexes.default.driver') ?? 'local';
+        return Config::get('statamic.search.indexes.default.driver');
     }
 
     public function type(): string

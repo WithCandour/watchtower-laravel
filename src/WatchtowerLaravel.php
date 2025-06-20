@@ -31,7 +31,6 @@ class WatchtowerLaravel
             System\QueueDriver::class,
             System\DatabaseConnection::class,
             System\RedisConnection::class,
-            System\QueueJobCount::class,
             Statamic\LicenseStatus::class,
             Statamic\AssetDriver::class,
             Statamic\SearchDriver::class,

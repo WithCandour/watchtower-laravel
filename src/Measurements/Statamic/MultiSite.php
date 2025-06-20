@@ -3,7 +3,6 @@
 namespace Watchtower\WatchtowerLaravel\Measurements\Statamic;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
-use Illuminate\Support\Facades\Config;
 
 class MultiSite extends Measurement
 {
@@ -15,14 +14,14 @@ class MultiSite extends Measurement
     public function value(): ?string
     {
         if (!class_exists(\Statamic\Sites\Sites::class)) {
-            return 'not_installed';
+            return null;
         }
 
         try {
-            $sites = Config::get('statamic.sites.sites', []);
-            return count($sites) > 1 ? '1' : '0';
+            $sites = \Statamic\Facades\Site::all();
+            return count($sites) > 1 ? 'true' : 'false';
         } catch (\Exception $e) {
-            return '0';
+            return 'false';
         }
     }
 

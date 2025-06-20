@@ -14,7 +14,7 @@ class LicenseStatus extends Measurement
     public function value(): ?string
     {
         if (!class_exists(\Statamic\Licensing\LicenseManager::class)) {
-            return 'not_installed';
+            return null;
         }
 
         try {

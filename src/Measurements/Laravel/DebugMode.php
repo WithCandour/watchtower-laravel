@@ -9,12 +9,12 @@ class DebugMode extends Measurement
 {
     public function key(): string
     {
-        return 'laravel.debug.enabled';
+        return 'laravel.debug_enabled';
     }
 
     public function value(): ?string
     {
-        return Config::get('app.debug') ? '1' : '0';
+        return Config::get('app.debug') ? 'true' : 'false';
     }
 
     public function type(): string

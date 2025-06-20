@@ -15,10 +15,10 @@ class StacheDriver extends Measurement
     public function value(): ?string
     {
         if (!class_exists(\Statamic\Stache\Stache::class)) {
-            return 'not_installed';
+            return null;
         }
 
-        return Config::get('statamic.stache.driver', 'file');
+        return Config::get('statamic.stache.driver');
     }
 
     public function type(): string
