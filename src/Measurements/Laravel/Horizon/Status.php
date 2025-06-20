@@ -18,26 +18,19 @@ class Status extends Measurement
             return null;
         }
 
-        $output = [];
-        $returnCode = 0;
+        $status = Artisan::call('horizon:status');
 
-        Artisan::call('horizon:status', [], $output, $returnCode);
-
-        if ($returnCode === 0) {
-            return 'running';
-        } elseif ($returnCode === 1) {
-            return 'paused';
-        } elseif ($returnCode === 2) {
-            return 'inactive';
-        } else {
-            return null;
-        }
+        return match ($status) {
+            0 => 'running',
+            1 => 'paused',
+            2 => 'inactive',
+            default => null,
+        };
     }
 
     public function type(): string
     {
         return Measurement::TYPE_STRING;
     }
-
 
 }

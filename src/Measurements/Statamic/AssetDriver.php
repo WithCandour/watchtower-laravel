@@ -18,7 +18,7 @@ class AssetDriver extends Measurement
             return 'not_installed';
         }
 
-        return Config::get('statamic.assets.container') ?? 'local';
+        return Config::get('statamic.assets.container');
     }
 
     public function type(): string

@@ -14,7 +14,7 @@ class MaintenanceMode extends Measurement
 
     public function value(): ?string
     {
-        return App::isDownForMaintenance() ? '1' : '0';
+        return App::isDownForMaintenance() ? 'true' : 'false';
     }
 
     public function type(): string
