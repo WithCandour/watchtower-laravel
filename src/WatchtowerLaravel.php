@@ -5,6 +5,7 @@ namespace Watchtower\WatchtowerLaravel;
 use Illuminate\Support\Collection;
 use Watchtower\WatchtowerLaravel\Measurements\PHP;
 use Watchtower\WatchtowerLaravel\Measurements\Git;
+use Watchtower\WatchtowerLaravel\Dependencies\Composer;
 
 class WatchtowerLaravel
 {
@@ -55,7 +56,6 @@ class WatchtowerLaravel
 
     public function dependencies(): array
     {
-        // TODO: Add dependencies
-        return [];
+        return (new Composer)->dependencies();
     }
 }

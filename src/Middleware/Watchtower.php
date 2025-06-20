@@ -13,6 +13,8 @@ class Watchtower
 {
     public function handle(Request $request, Closure $next): Response
     {
+        if (!Config::get('watchtower-laravel.enabled')) return $next($request);
+
         if ($request->method() !== 'GET') return $next($request);
 
         $url = Config::get('watchtower-laravel.server_url');
