@@ -1,15 +1,15 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\System;
+namespace Watchtower\WatchtowerLaravel\Measurements\Redis;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 use Illuminate\Support\Facades\Redis;
 
-class RedisConnection extends Measurement
+class Connection extends Measurement
 {
     public function key(): string
     {
-        return 'system.redis.connection';
+        return 'redis.connection';
     }
 
     public function value(): ?string

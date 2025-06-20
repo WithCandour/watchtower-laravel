@@ -8,7 +8,7 @@ class ErrorReporting extends Measurement
 {
     public function key(): string
     {
-        return 'php.error.reporting';
+        return 'php.error_reporting';
     }
 
     public function value(): ?string

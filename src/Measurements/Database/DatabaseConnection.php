@@ -1,15 +1,15 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\System;
+namespace Watchtower\WatchtowerLaravel\Measurements\Database;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseConnection extends Measurement
+class Connection extends Measurement
 {
     public function key(): string
     {
-        return 'system.database.connection';
+        return 'database.connection';
     }
 
     public function value(): ?string

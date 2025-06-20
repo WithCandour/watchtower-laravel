@@ -9,7 +9,7 @@ class StacheDriver extends Measurement
 {
     public function key(): string
     {
-        return 'statamic.stache.driver';
+        return 'statamic.stache_driver';
     }
 
     public function value(): ?string
@@ -18,7 +18,7 @@ class StacheDriver extends Measurement
             return null;
         }
 
-        return Config::get('statamic.stache.driver');
+        return Config::get('statamic.stache_driver');
     }
 
     public function type(): string

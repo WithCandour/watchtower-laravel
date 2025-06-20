@@ -1,15 +1,15 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\System;
+namespace Watchtower\WatchtowerLaravel\Measurements\Queue;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 use Illuminate\Support\Facades\Config;
 
-class QueueEnabled extends Measurement
+class Enabled extends Measurement
 {
     public function key(): string
     {
-        return 'system.queue.enabled';
+        return 'queue.enabled';
     }
 
     public function value(): ?string

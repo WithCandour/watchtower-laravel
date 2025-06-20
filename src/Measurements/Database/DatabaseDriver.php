@@ -1,15 +1,15 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\System;
+namespace Watchtower\WatchtowerLaravel\Measurements\Database;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 use Illuminate\Support\Facades\Config;
 
-class DatabaseDriver extends Measurement
+class Driver extends Measurement
 {
     public function key(): string
     {
-        return 'system.database.driver';
+        return 'database.driver';
     }
 
     public function value(): ?string

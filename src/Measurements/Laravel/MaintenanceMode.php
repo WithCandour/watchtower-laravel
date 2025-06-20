@@ -9,7 +9,7 @@ class MaintenanceMode extends Measurement
 {
     public function key(): string
     {
-        return 'laravel.maintenance.enabled';
+        return 'laravel.maintenance_mode_enabled';
     }
 
     public function value(): ?string

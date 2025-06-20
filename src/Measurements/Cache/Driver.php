@@ -1,15 +1,15 @@
 <?php
 
-namespace Watchtower\WatchtowerLaravel\Measurements\System;
+namespace Watchtower\WatchtowerLaravel\Measurements\Cache;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 use Illuminate\Support\Facades\Config;
 
-class CacheDriver extends Measurement
+class Driver extends Measurement
 {
     public function key(): string
     {
-        return 'system.cache.driver';
+        return 'cache.driver';
     }
 
     public function value(): ?string

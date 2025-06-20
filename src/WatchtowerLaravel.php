@@ -5,8 +5,12 @@ namespace Watchtower\WatchtowerLaravel;
 use Illuminate\Support\Collection;
 use Watchtower\WatchtowerLaravel\Measurements\PHP;
 use Watchtower\WatchtowerLaravel\Measurements\Laravel;
-use Watchtower\WatchtowerLaravel\Measurements\System;
 use Watchtower\WatchtowerLaravel\Measurements\Statamic;
+use Watchtower\WatchtowerLaravel\Measurements\Database;
+use Watchtower\WatchtowerLaravel\Measurements\Cache;
+use Watchtower\WatchtowerLaravel\Measurements\Queue;
+use Watchtower\WatchtowerLaravel\Measurements\Redis;
+use Watchtower\WatchtowerLaravel\Measurements\System;
 
 class WatchtowerLaravel
 {
@@ -16,7 +20,7 @@ class WatchtowerLaravel
             PHP\Version::class,
             PHP\MemoryLimit::class,
             PHP\MaxFileUpload::class,
-            PHP\ExecutionTime::class,
+            PHP\MaxExecutionTime::class,
             PHP\ErrorReporting::class,
             PHP\Opcache\Enabled::class,
             Laravel\Version::class,
@@ -24,19 +28,19 @@ class WatchtowerLaravel
             Laravel\Environment::class,
             Laravel\MaintenanceMode::class,
             Laravel\Horizon\Status::class,
-            System\Timezone::class,
-            System\DatabaseDriver::class,
-            System\CacheDriver::class,
-            System\QueueEnabled::class,
-            System\QueueDriver::class,
-            System\DatabaseConnection::class,
-            System\RedisConnection::class,
+            Database\Driver::class,
+            Cache\Driver::class,
+            Queue\Enabled::class,
+            Queue\Driver::class,
+            Database\Connection::class,
+            Redis\Connection::class,
             Statamic\LicenseStatus::class,
             Statamic\AssetDriver::class,
             Statamic\SearchDriver::class,
             Statamic\StacheDriver::class,
             Statamic\StaticCaching::class,
             Statamic\MultiSite::class,
+            System\Timezone::class,
         ])
             ->map(function (string $class) {
                 $instance = new $class;

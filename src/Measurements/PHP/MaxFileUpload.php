@@ -8,7 +8,7 @@ class MaxFileUpload extends Measurement
 {
     public function key(): string
     {
-        return 'php.upload.max_filesize';
+        return 'php.upload_max_filesize';
     }
 
     public function value(): ?string

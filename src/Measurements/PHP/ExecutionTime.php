@@ -4,11 +4,11 @@ namespace Watchtower\WatchtowerLaravel\Measurements\PHP;
 
 use Watchtower\WatchtowerLaravel\Measurements\Measurement;
 
-class ExecutionTime extends Measurement
+class MaxExecutionTime extends Measurement
 {
     public function key(): string
     {
-        return 'php.execution.max_time';
+        return 'php.max_execution_time';
     }
 
     public function value(): ?string

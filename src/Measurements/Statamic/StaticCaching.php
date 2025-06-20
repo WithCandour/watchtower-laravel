@@ -9,7 +9,7 @@ class StaticCaching extends Measurement
 {
     public function key(): string
     {
-        return 'statamic.static_caching.strategy';
+        return 'statamic.static_caching_strategy';
     }
 
     public function value(): ?string

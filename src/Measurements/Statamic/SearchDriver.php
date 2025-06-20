@@ -9,7 +9,7 @@ class SearchDriver extends Measurement
 {
     public function key(): string
     {
-        return 'statamic.search.driver';
+        return 'statamic.search_driver';
     }
 
     public function value(): ?string

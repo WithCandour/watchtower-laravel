@@ -9,7 +9,7 @@ class AssetDriver extends Measurement
 {
     public function key(): string
     {
-        return 'statamic.assets.driver';
+        return 'statamic.assets_driver';
     }
 
     public function value(): ?string

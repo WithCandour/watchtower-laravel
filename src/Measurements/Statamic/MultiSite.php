@@ -8,7 +8,7 @@ class MultiSite extends Measurement
 {
     public function key(): string
     {
-        return 'statamic.multi_site.enabled';
+        return 'statamic.multi_site_enabled';
     }
 
     public function value(): ?string

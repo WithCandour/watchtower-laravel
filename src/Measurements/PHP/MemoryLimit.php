@@ -8,7 +8,7 @@ class MemoryLimit extends Measurement
 {
     public function key(): string
     {
-        return 'php.memory.limit';
+        return 'php.memory_limit';
     }
 
     public function value(): ?string
