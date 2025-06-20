@@ -11,6 +11,8 @@ use Watchtower\WatchtowerLaravel\Measurements\Cache;
 use Watchtower\WatchtowerLaravel\Measurements\Queue;
 use Watchtower\WatchtowerLaravel\Measurements\Redis;
 use Watchtower\WatchtowerLaravel\Measurements\System;
+use Watchtower\WatchtowerLaravel\Measurements\Git;
+use Watchtower\WatchtowerLaravel\Dependencies\Composer;
 
 class WatchtowerLaravel
 {
@@ -41,16 +43,35 @@ class WatchtowerLaravel
             Statamic\StaticCaching::class,
             Statamic\MultiSite::class,
             System\Timezone::class,
+            Git\Origin::class,
+            Git\Branch::class,
+            Git\CommitHash::class,
+            Git\CommitMessage::class,
+            Git\CommitDate::class,
+            Git\Author::class,
+            Git\IsClean::class,
+            Git\UntrackedFiles::class,
+            Git\ModifiedFiles::class,
+            Git\IsUpToDate::class,
+            Git\AheadCount::class,
+            Git\BehindCount::class,
+            Git\RepositoryName::class,
+            Git\GitVersion::class,
         ])
             ->map(function (string $class) {
-                $instance = new $class;
+                try {
+                    $instance = new $class;
 
-                return [
-                    'key' => $instance->key(),
-                    'value' => $instance->value(),
-                    'type' => $instance->type(),
-                ];
+                    return [
+                        'key' => $instance->key(),
+                        'value' => $instance->value(),
+                        'type' => $instance->type(),
+                    ];
+                } catch (Throwable $e) {
+                    return null;
+                }
             })
+            ->filter()
             ->values()
             ->toArray();
     }
@@ -63,7 +84,6 @@ class WatchtowerLaravel
 
     public function dependencies(): array
     {
-        // TODO: Add dependencies
-        return [];
+        return (new Composer)->dependencies();
     }
 }

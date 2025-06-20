@@ -18,6 +18,6 @@ class MemoryLimit extends Measurement
 
     public function type(): string
     {
-        return Measurement::TYPE_INTEGER;
+        return Measurement::TYPE_STRING;
     }
 }
