@@ -5,7 +5,6 @@ namespace Watchtower\WatchtowerLaravel;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Watchtower\WatchtowerLaravel\Commands\WatchtowerLaravelCommand;
-use Watchtower\WatchtowerLaravel\Middleware\Watchtower;
 
 class WatchtowerLaravelServiceProvider extends PackageServiceProvider
 {
@@ -20,7 +19,5 @@ class WatchtowerLaravelServiceProvider extends PackageServiceProvider
             ->name('watchtower-laravel')
             ->hasConfigFile()
             ->hasCommand(WatchtowerLaravelCommand::class);
-
-        $this->app['router']->pushMiddlewareToGroup('web', Watchtower::class);
     }
 }
