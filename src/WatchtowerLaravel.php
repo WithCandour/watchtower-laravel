@@ -11,6 +11,7 @@ class WatchtowerLaravel
     {
         return Collection::make([
             PHP\Version::class,
+            PHP\MemoryLimit::class,
         ])
             ->map(function (string $class) {
                 $instance = new $class;
@@ -23,5 +24,17 @@ class WatchtowerLaravel
             })
             ->values()
             ->toArray();
+    }
+
+    public function events(): array
+    {
+        // TODO: Add events
+        return [];
+    }
+
+    public function dependencies(): array
+    {
+        // TODO: Add dependencies
+        return [];
     }
 }
