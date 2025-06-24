@@ -26,6 +26,8 @@ class WatchtowerLaravelServiceProvider extends PackageServiceProvider
     {
         parent::boot();
 
-        $this->app['router']->pushMiddlewareToGroup('web', Watchtower::class);
+        // TODO: Bypass statamic static cacher to enable the middleware to be applied to the web group
+        // $this->app['router']->pushMiddlewareToGroup('web', Watchtower::class);
+        $this->app['router']->pushMiddlewareToGroup('statamic.cp', Watchtower::class);
     }
 }
